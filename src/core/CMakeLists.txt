@@ -1,16 +1,16 @@
-project(TiaraCE-Server)
+project(tiarace)
 
 ###############################################################################
 # Source Files
 ###############################################################################
 set(src_files
-"eventLoop.cpp"
-"eventLoop.h"
-"gameLoop.cpp"
-"gameLoop.h"
+"event_loop.cpp"
+"event_loop.h"
+"game_loop.cpp"
+"game_loop.h"
 "server.cpp"
-"memoryManager.cpp"
-"memoryManager.h"
+"memory_manager.cpp"
+"memory_manager.h"
 )
 
 ###############################################################################
@@ -23,9 +23,10 @@ ${SDL2_LIBRARIES}
 ###############################################################################
 # Compiler
 ###############################################################################
-add_executable(TiaraCE-Server ${src_files})
+add_executable(tiaraceded ${src_files})
+add_executable(tiarace ${src_files})
 
 ###############################################################################
 # Linker
 ###############################################################################
-target_link_libraries(TiaraCE-Server TiaraCE-Engine ${lib_files})
+target_link_libraries(tiaraceded tiarace ${lib_files})
