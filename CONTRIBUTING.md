@@ -5,7 +5,8 @@ TiaraCE is intended to be a cross-platform application. As such, there are a few
 
 The following is a list of things that must be taken into consideration before any code is accepted into the codebase:
 
-*   All code is to be written in C++, and should adhere to the C++11 standard.
+*   All code is to be written in C++, and should adhere at minimum to the C++11 standard.
+    *   Code that follows up to the C++17 is permitted.
 
 
 *   Code must be able to be compiled in Clang or GCC/MinGW.
