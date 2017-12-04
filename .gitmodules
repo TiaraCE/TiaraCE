@@ -1,0 +1,3 @@
+[submodule "spec/docs/blam.sav"]
+	path = spec/docs/blam.sav
+	url = git@github.com:the-empress/hce-profile-persistence.git
