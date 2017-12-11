@@ -1,9 +1,9 @@
-project(tiarace)
+project(core)
 
 ###############################################################################
 # Source Files
 ###############################################################################
-set(src_files
+set(core_src_files
 "event_loop.cpp"
 "event_loop.h"
 "game_loop.cpp"
@@ -13,6 +13,9 @@ set(src_files
 "memory_manager.h"
 )
 
+set(server_src_files
+"server.cpp"
+)
 ###############################################################################
 # Library Files
 ###############################################################################
@@ -23,10 +26,11 @@ ${SDL2_LIBRARIES}
 ###############################################################################
 # Compiler
 ###############################################################################
-add_executable(tiaraceded ${src_files})
-add_executable(tiarace ${src_files})
+add_library(core SHARED ${core_src_files})
+add_executable(tiarace-dedicated ${server_src_files})
 
 ###############################################################################
 # Linker
 ###############################################################################
-target_link_libraries(tiaraceded tiarace ${lib_files})
+target_link_libraries(core ${lib_files})
+target_link_libraries(tiarace-dedicated core)
