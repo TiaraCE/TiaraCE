@@ -1,4 +1,4 @@
-project(TiaraCE-Client)
+project(client)
 
 ###############################################################################
 # Source Files
@@ -17,9 +17,9 @@ ${SDL2_LIBRARIES}
 ###############################################################################
 # Compiler
 ###############################################################################
-add_executable(TiaraCE-Client ${src_files})
+add_executable(tiarace ${src_files})
 
 ###############################################################################
 # Linker
 ###############################################################################
-target_link_libraries(TiaraCE-Client TiaraCE-Engine ${lib_files})
+target_link_libraries(tiarace core ${lib_files})
