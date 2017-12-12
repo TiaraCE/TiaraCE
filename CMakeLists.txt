@@ -32,10 +32,10 @@ endif()
 ###############################################################################
 if(UNIX) #Linux, OS X, CygWin
 	message(STATUS "Compiling on " ${CMAKE_SYSTEM})
-	if(${CMAKE_CXX_COMPILER_ID} EQUAL "GNU")
+	if(${CMAKE_CXX_COMPILER_ID} MATCHES "GNU")
 		message(STATUS "Compiler is GCC")
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Werror -pedantic")
-	elseif(${CMAKE_CXX_COMPILER_ID} EQUAL "Clang")
+	elseif(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
 		message(STATUS "Compiler is Clang")
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Werror -pedantic")
 	else() #Unsupported compiler?
@@ -50,7 +50,7 @@ elseif(WIN32)
 	elseif(MINGW)
 		message(STATUS "Compiler is MinGW")
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Werror -pedantic")
-	elseif(${CMAKE_CXX_COMPILER_ID} EQUAL "Clang")
+	elseif(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
 		message(STATUS "Compiler is Clang")
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Werror -pedantic")
 	else() #Unsupported compiler?
