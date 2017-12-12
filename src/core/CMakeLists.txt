@@ -26,7 +26,7 @@ ${SDL2_LIBRARIES}
 ###############################################################################
 # Compiler
 ###############################################################################
-add_library(core SHARED ${core_src_files})
+add_library(core STATIC ${core_src_files})
 add_executable(tiarace-dedicated ${server_src_files})
 
 ###############################################################################
