@@ -30,13 +30,34 @@ endif()
 ###############################################################################
 # Compiler Flags
 ###############################################################################
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-
-if(WIN32)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nologo -Gm- -EHa- -Od -Oi -WX -W4 -wd4100 -wd4189")
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -pedantic")
+if(UNIX) #Linux, OS X, CygWin
+	message(STATUS "Compiling on " ${CMAKE_SYSTEM})
+	if(${CMAKE_CXX_COMPILER_ID} EQUAL "GNU")
+		message(STATUS "Compiler is GCC")
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Werror -pedantic")
+	elseif(${CMAKE_CXX_COMPILER_ID} EQUAL "Clang")
+		message(STATUS "Compiler is Clang")
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Werror -pedantic")
+	else() #Unsupported compiler?
+		message(FATAL_ERROR "Compiler is " ${CMAKE_CXX_COMPILER_ID} " which is unsupported, please submit a new issue on github!")
+	endif()
+elseif(WIN32)
+	message(STATUS "Compiling on " ${CMAKE_SYSTEM})
+	if(MSVC)
+		message(STATUS "Compiler is MSVC")
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nologo -Gm- -EHa- -Od -Oi -WX -wd4100 -wd4189")
+		add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+	elseif(MINGW)
+		message(STATUS "Compiler is MinGW")
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Werror -pedantic")
+	elseif(${CMAKE_CXX_COMPILER_ID} EQUAL "Clang")
+		message(STATUS "Compiler is Clang")
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Werror -pedantic")
+	else() #Unsupported compiler?
+		message(FATAL_ERROR "Compiler is " ${CMAKE_CXX_COMPILER_ID} " which is unsupported, please submit a new issue on github!")
+	endif()
+else() #Unsupported platform?
+	message(FATAL_ERROR "Compiling on " ${CMAKE_SYSTEM} " which is unsupported, please submit a new issue on github!")
 endif()
 
 ###############################################################################
