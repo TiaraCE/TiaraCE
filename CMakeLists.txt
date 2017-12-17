@@ -19,17 +19,13 @@ foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
 endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
 
 ###############################################################################
-# 3rd Party Libraries
+# Compiler Configuration
 ###############################################################################
-find_package(SDL2 REQUIRED)
-if(SDL2_FOUND)
-	include_directories(${SDL2_INCLUDE_DIRS})
-	message(STATUS "SDL2 Include Dir: " ${SDL2_INCLUDE_DIRS})
-endif()
 
-###############################################################################
-# Compiler Flags
-###############################################################################
+# Checks if the compiler is 32-bit
+if(CMAKE_SIZEOF_VOID_P EQUAL 4)
+	message(FATAL_ERROR "TiaraCE ONLY supports 64-bit, please use a 64-bit compiler. Aborting")
+endif()
 
 set(unix_shared_compiler_flags "-std=c++14 -Werror -pedantic")
 
@@ -61,6 +57,15 @@ elseif(WIN32)
 	endif()
 else() #Unsupported platform?
 	message(FATAL_ERROR "Compiling on " ${CMAKE_SYSTEM} " which is unsupported, please submit a new issue on github!")
+endif()
+
+###############################################################################
+# 3rd Party Libraries
+###############################################################################
+find_package(SDL2 REQUIRED)
+if(SDL2_FOUND)
+	include_directories(${SDL2_INCLUDE_DIRS})
+	message(STATUS "SDL2 Include Dir: " ${SDL2_INCLUDE_DIRS})
 endif()
 
 ###############################################################################
