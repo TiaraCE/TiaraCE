@@ -45,13 +45,13 @@
 # SDL2_INCLUDE_DIRS - The SDL2 include directories
 # SDL2_LIBRARIES - The libraries needed to use SDL2
 
-find_path(SDL2_INCLUDE_DIR SDL2/SDL.h
+find_path(SDL2_INCLUDE_DIR SDL.h
 	HINTS
 	${CMAKE_SOURCE_DIR}
 	$ENV{SDL2_DIR}
-	PATH_SUFFIXES 
-	include/SDL2 
-	include
+	PATH_SUFFIXES
+	include/SDL2
+	SDL2/include
 	SDL2
 	PATHS
 	/usr/local
@@ -59,59 +59,29 @@ find_path(SDL2_INCLUDE_DIR SDL2/SDL.h
 	/opt
 )
 
-# 64 bit
-if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-	FIND_LIBRARY(SDL2_LIBRARY SDL2
-		HINTS
-		${CMAKE_SOURCE_DIR}
-		$ENV{SDL2_DIR}
-		PATH_SUFFIXES 
-		lib64 
-		lib
-		lib/x64
-		PATHS
-		/opt
-	)
-# 32 bit
-else(CMAKE_SIZEOF_VOID_P EQUAL 8)
-	FIND_LIBRARY(SDL2_LIBRARY SDL2
-		HINTS
-		${CMAKE_SOURCE_DIR}
-		$ENV{SDL2_DIR}
-		PATH_SUFFIXES 
-		lib
-		lib/x86
-		PATHS
-		/opt
-	)
-endif(CMAKE_SIZEOF_VOID_P EQUAL 8)
+FIND_LIBRARY(SDL2_LIBRARY SDL2
+	HINTS
+	${CMAKE_SOURCE_DIR}
+	$ENV{SDL2_DIR}
+	PATH_SUFFIXES
+	lib64
+	lib/x64
+	lib
+	PATHS
+	/opt
+)
 
-# 64 bit
-if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-	FIND_LIBRARY(SDL2_MAIN_LIBRARY SDL2main
-		HINTS
-		${CMAKE_SOURCE_DIR}
-		$ENV{SDL2_DIR}
-		PATH_SUFFIXES 
-		lib64
-		lib
-		lib/x64
-		PATHS
-		/opt
-		)
-# 32 bit
-else(CMAKE_SIZEOF_VOID_P EQUAL 8)
-	FIND_LIBRARY(SDL2_MAIN_LIBRARY SDL2main
-		HINTS
-		${CMAKE_SOURCE_DIR}
-		$ENV{SDL2_DIR}
-		PATH_SUFFIXES 
-		lib
-		lib/x86
-		PATHS
-		/opt
-		)
-endif(CMAKE_SIZEOF_VOID_P EQUAL 8)
+FIND_LIBRARY(SDL2_MAIN_LIBRARY SDL2main
+	HINTS
+	${CMAKE_SOURCE_DIR}
+	$ENV{SDL2_DIR}
+	PATH_SUFFIXES
+	lib64
+	lib/x64
+	lib
+	PATHS
+	/opt
+)
 
 include(FindPackageHandleStandardArgs)
 
